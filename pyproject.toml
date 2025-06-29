@@ -50,6 +50,10 @@ dev = [
     "pytest-xdist>=3.6.1",
     "ruff>=0.7.1",
 ]
+local-inference = [
+    "spacy>=3.7.0",
+    "sentence-transformers>=2.2.2",
+]
 
 [build-system]
 requires = ["hatchling"]

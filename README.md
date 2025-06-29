@@ -345,6 +345,38 @@ graphiti = Graphiti(
 
 Ensure Ollama is running (`ollama serve`) and that you have pulled the models you want to use.
 
+## Using Graphiti with a Local Inference Engine (spaCy)
+
+Graphiti supports using a local inference engine, such as spaCy, for knowledge graph extraction. This is a great option for users who want to avoid the costs and privacy concerns associated with large language models.
+
+To use this feature, you'll need to install the `spacy` extra:
+
+```bash
+pip install "graphiti-core[local-inference]"
+```
+
+You'll also need to download a spaCy model:
+
+```bash
+python -m spacy download en_core_web_sm
+```
+
+Then, you can initialize Graphiti with the `LocalLLMClient`:
+
+```python
+from graphiti_core import Graphiti
+from graphiti_core.llm_client.local_llm_client import LocalLLMClient
+
+graphiti = Graphiti(
+    "bolt://localhost:7687",
+    "neo4j",
+    "password",
+    llm_client=LocalLLMClient(),
+)
+```
+
+For a complete working example, see the [Local Inference Quickstart](./examples/quickstart/quickstart_local_inference.py) in the examples directory.
+
 ## Documentation
 
 - [Guides and API documentation](https://help.getzep.com/graphiti).
